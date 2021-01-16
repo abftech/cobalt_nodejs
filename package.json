@@ -1,0 +1,25 @@
+{
+  "name": "masterpoints",
+  "version": "1.0.0",
+  "description": "Node.js interface to MAsterPoints tables",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mssql": "^6.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mguthrieabf/cobalt_nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mguthrieabf/cobalt_nodejs/issues"
+  },
+  "homepage": "https://github.com/mguthrieabf/cobalt_nodejs#readme"
+}
