@@ -111,6 +111,19 @@ app.get('/mps/:userId', function (req, res) {
     runSql(res, str)
 })
 
+// Club Details by Club Number
+app.get('/clubDetails/:clubNumber', function (req, res) {
+    console.log("Requested /mps");
+    var str = "select ClubName, ClubEmail, ClubWebsite,\
+       MPSecName, MPSecAddress1, MPSecAddress2, MPSecEmail, MPSecPhone1, MPSecPhone2,\
+       ClubSecName, ClubSecAddress1, ClubSecAddress2, ClubSecEmail, ClubSecPhone1, ClubSecPhone2,\
+       VenueAddress1, VenueAddress2, VenueSuburb, VenueState, VenuePostcode,  LatestNotifiableEditDate\
+       from clubs\
+       where clubNumber = " + req.params.clubNumber;
+
+    runSql(res, str)
+})
+
 app.get('/tmp', function (req, res) {
     console.log("Requested /tmp");
     var str = "SELECT VariableValue AS ThisValue FROM SystemSettings WHERE VariableName = 'CurrentPeriodID'";
