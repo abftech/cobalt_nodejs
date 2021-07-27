@@ -124,6 +124,16 @@ app.get('/clubDetails/:clubNumber', function (req, res) {
     runSql(res, str)
 })
 
+// Club name search - get top 11 matches
+app.get('/clubNameSearch/:clubNameSearch', function (req, res) {
+    console.log("Requested /mps");
+    var str = "SELECT TOP 11 ClubName, ClubNumber from Clubs\
+                where ClubName like '" + req.params.clubNameSearch + "%'";
+    console.log(str);
+    runSql(res, str)
+})
+
+
 app.get('/tmp', function (req, res) {
     console.log("Requested /tmp");
     var str = "SELECT VariableValue AS ThisValue FROM SystemSettings WHERE VariableName = 'CurrentPeriodID'";
