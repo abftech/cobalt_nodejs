@@ -128,7 +128,8 @@ app.get('/clubDetails/:clubNumber', function (req, res) {
 app.get('/clubNameSearch/:clubNameSearch', function (req, res) {
     console.log("Requested /mps");
     var str = "SELECT TOP 11 ClubName, ClubNumber from Clubs\
-                where ClubName like '" + req.params.clubNameSearch + "%'";
+                where ClubName like '" + req.params.clubNameSearch + "%'\
+                order by ClubName";
     console.log(str);
     runSql(res, str)
 })
