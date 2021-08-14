@@ -126,7 +126,7 @@ app.get('/clubDetails/:clubNumber', function (req, res) {
 
 // Club name search - get top 11 matches
 app.get('/clubNameSearch/:clubNameSearch', function (req, res) {
-    console.log("Requested /mps");
+    console.log("Requested /clubNameSearch");
     var str = "SELECT TOP 11 ClubName, ClubNumber from Clubs\
                 where ClubName like '" + req.params.clubNameSearch + "%'\
                 order by ClubName";
@@ -134,6 +134,16 @@ app.get('/clubNameSearch/:clubNameSearch', function (req, res) {
     runSql(res, str)
 })
 
+// Home club members for a given club number
+app.get('/clubMemberList/:clubNumber', function (req, res) {
+    console.log("Requested /clubMemberList");
+    const str = "select ABFNumber, Surname, GivenNames, EmailAddress\
+                 from Players, Clubs\
+                 where Players.HomeClubID = Clubs.ClubID\
+                 and clubs.ClubNumber = " + req.params.clubNumber;
+    console.log(str);
+    runSql(res, str)
+})
 
 app.get('/tmp', function (req, res) {
     console.log("Requested /tmp");
