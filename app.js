@@ -140,6 +140,7 @@ app.get('/clubMemberList/:clubNumber', function (req, res) {
     const str = "select ABFNumber, Surname, GivenNames, EmailAddress\
                  from Players, Clubs\
                  where Players.HomeClubID = Clubs.ClubID\
+                 and Players.IsActive = 'Y'\
                  and clubs.ClubNumber = " + req.params.clubNumber;
     console.log(str);
     runSql(res, str)
