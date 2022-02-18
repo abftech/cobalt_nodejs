@@ -79,6 +79,19 @@ app.get('/firstlastname_search/:Firstname/:Lastname', function (req, res) {
     runSql(res, str);
 })
 
+// firstname and lastname search for active users only
+app.get('/firstlastname_search_active/:Firstname/:Lastname', function (req, res) {
+    var str = "select GivenNames, Surname, ABFNumber, ClubName\
+      from Players, Clubs\
+      where GivenNames like '" + req.params.Firstname + "%'\
+      and Surname like '" + req.params.Lastname + "%'\
+      and IsActive='Y'\
+      and Clubs.ClubID=Players.HomeClubID\
+      order by Surname, GivenNames";
+
+    runSql(res, str);
+})
+
 // Club name from id
 app.get('/club/:clubId', function (req, res) {
     console.log("Requested /club");

@@ -8,5 +8,19 @@
       <jdbc-url>jdbc:sqlserver://168.1.35.207:25000;database=abfmpc_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="Microsoft SQL Server - abfmpc_db@tempmpc.c97jawiow7ed.ap-southeast-2.rds.amazonaws.com" uuid="95c38c04-ac99-45dd-9dc2-a20893eba69e">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://tempmpc.c97jawiow7ed.ap-southeast-2.rds.amazonaws.com:1433;database=abfmpc_db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="tempmpc.c97jawiow7ed.ap-southeast-2.rds.amazonaws.com" uuid="5ac89e6c-a647-438a-bf50-2d816c61c48f">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://tempmpc.c97jawiow7ed.ap-southeast-2.rds.amazonaws.com:1433</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
