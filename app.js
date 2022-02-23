@@ -100,12 +100,12 @@ app.get('/firstlastname_search_active/:Firstname/:Lastname', function (req, res)
         last_name_query = " and Surname like '" + req.params.Lastname + "%' "
     }
 
-    const str = "select TOP 11 GivenNames, Surname, ABFNumber, ClubName\
+    const str = "select TOP 11 GivenNames, Surname, ABFNumber, ClubName, EmailAddress\
       from Players, Clubs\
       where IsActive='Y'" + first_name_query + last_name_query +"\
       and Clubs.ClubID=Players.HomeClubID\
       order by Surname, GivenNames";
-    
+
 
     runSql(res, str);
 })
