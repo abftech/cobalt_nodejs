@@ -168,7 +168,8 @@ app.get('/clubNameSearch/:clubNameSearch', function (req, res) {
 // Home club members for a given club number
 app.get('/clubMemberList/:clubNumber', function (req, res) {
     console.log("Requested /clubMemberList");
-    const str = "select ABFNumber, Surname, GivenNames, EmailAddress\
+    const str = "select ABFNumber, Surname, GivenNames, EmailAddress,\
+                 Address1, Address2, AddressState, AddressPostcode, PhoneNumber\
                  from Players, Clubs\
                  where Players.HomeClubID = Clubs.ClubID\
                  and Players.IsActive = 'Y'\
