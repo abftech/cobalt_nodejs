@@ -184,6 +184,65 @@ app.get('/tmp', function (req, res) {
     runSql(res, str)
 })
 
+app.get('/mpci-events', function (req, res) {
+    console.log("Requested /mpci-events");
+    var str = "SELECT * from Events";
+    runSql(res, str)
+})
+
+app.get('/mpci-deleted-events', function (req, res) {
+    console.log("Requested /mpci-deleted-events");
+    var str = "SELECT * from DeletedEvents";
+    runSql(res, str)
+})
+
+app.get('/mpci-GreenPointAchievementBands', function (req, res) {
+    console.log("Requested /mpci-GreenPointAchievementBands");
+    var str = "SELECT * from GreenPointAchievementBands";
+    runSql(res, str)
+})
+
+app.get('/mpci-charge-types', function (req, res) {
+    console.log("Requested /mpci-charge-type");
+    var str = "SELECT * from ChargeTypes";
+    runSql(res, str)
+})
+
+app.get('/mpci-batches/:batch_id', function (req, res) {
+    console.log("Requested /mpci-batches");
+    const str = "SELECT * from MPBatches where MpBatchID > " + req.params.batch_id;
+    console.log(str);
+    runSql(res, str)
+})
+
+app.get('/mpci-trans/:min_tran_id/:max_tran_id', function (req, res) {
+    console.log("Requested /mpci-trans");
+    const str = "SELECT * from MPTrans where TranID > " + req.params.min_tran_id + " and TranID < " + req.params.max_tran_id;
+    console.log(str);
+    runSql(res, str)
+})
+
+app.get('/mpci-ranks', function (req, res) {
+    console.log("Requested /mpci-ranks");
+    const str = "SELECT * from Ranks";
+    console.log(str);
+    runSql(res, str)
+})
+
+app.get('/mpci-promotions/:min_id', function (req, res) {
+    console.log("Requested /mpci-promotions");
+    const str = "SELECT * from Promotions where PromotionID > " + req.params.min_id;
+    console.log(str);
+    runSql(res, str)
+})
+
+app.get('/mpci-system-settings', function (req, res) {
+    console.log("Requested /mpci-system-settings");
+    const str = "SELECT * from SystemSettings";
+    console.log(str);
+    runSql(res, str)
+})
+
 app.get('/provisionaldate', function(req, res) {
 // returns the current year and month, anything earlier is confirmed, the same or later is provisional
 
