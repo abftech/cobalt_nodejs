@@ -229,6 +229,157 @@ app.get('/mpci-ranks', function (req, res) {
     runSql(res, str)
 })
 
+app.get('/mpci-clubs', function (req, res) {
+    console.log("Requested /mpci-clubs");
+
+    // Specify fields to exclude passwords
+
+    const str = "SELECT B4CEntitlement,\n" +
+        "  B4CEntitlementBasis,\n" +
+        "  B4CEntitlementBasisNextYear,\n" +
+        "  B4CEntitlementNextYear,\n" +
+        "  ClubEmail,\n" +
+        "  ClubID,\n" +
+        "  ClubName,\n" +
+        "  ClubNumber,\n" +
+        "  ClubSecAddress1,\n" +
+        "  ClubSecAddress2,\n" +
+        "  ClubSecEmail,\n" +
+        "  ClubSecName,\n" +
+        "  ClubSecPhone1,\n" +
+        "  ClubSecPhone2,\n" +
+        "  ClubWebsite,\n" +
+        "  Comments,\n" +
+        "  CongressMnemonic,\n" +
+        "  DateAdded,\n" +
+        "  DateClosed,\n" +
+        "  GPACategory,\n" +
+        "  IsB4cRemote,\n" +
+        "  IsClosed,\n" +
+        "  IsGenuineClub,\n" +
+        "  IsNonChargeable,\n" +
+        "  IsPaperReporting,\n" +
+        "  LastLastYearGreen,\n" +
+        "  LastYearGreen,\n" +
+        "  LatestNotifiableEditDate,\n" +
+        "  MPSecAddress1,\n" +
+        "  MPSecAddress2,\n" +
+        "  MPSecEmail,\n" +
+        "  MPSecName,\n" +
+        "  MPSecPhone1,\n" +
+        "  MPSecPhone2,\n" +
+        "  MembersQ1,\n" +
+        "  MembersQ2,\n" +
+        "  MembersQ3,\n" +
+        "  MembersQ4,\n" +
+        "  ShortName,\n" +
+        "  VenueAddress1,\n" +
+        "  VenueAddress2,\n" +
+        "  VenuePostcode,\n" +
+        "  VenueState,\n" +
+        "  VenueSuburb\n" +
+        "  from Clubs";
+
+
+    console.log(str);
+    runSql(res, str)
+})
+
+app.get('/mpci-players/:min_player_id/:max_player_id', function (req, res) {
+    console.log("Requested /mpci-players");
+    const str = "SELECT   ABFNumber\n" +
+        "ABFNumberRaw ,\n" +
+        "Address1 ,\n" +
+        "Address2 ,\n" +
+        "AddressPostcode ,\n" +
+        "AddressState ,\n" +
+        "Comments ,\n" +
+        "DOBDay ,\n" +
+        "DOBMonth ,\n" +
+        "DOBYear ,\n" +
+        "DateAdded ,\n" +
+        "GPAThisPeriod ,\n" +
+        "GPAThisYTD ,\n" +
+        "Gender ,\n" +
+        "GivenNames ,\n" +
+        "HomeClubID ,\n" +
+        "IntraGreenPeriod ,\n" +
+        "IntraGreenYTD ,\n" +
+        "IntraRedPeriod ,\n" +
+        "IntraRedYTD ,\n" +
+        "Is1000Club ,\n" +
+        "IsActive ,\n" +
+        "IsInactivationRequested ,\n" +
+        "IsMcCutcheonEligible ,\n" +
+        "IsPrinting1000ClubThisMonth ,\n" +
+        "IsRankCertificateRequired ,\n" +
+        "IsRegistrationCardRequired ,\n" +
+        "IsUsingAlias ,\n" +
+        "LastPromotionPeriodID ,\n" +
+        "LastYearMPs ,\n" +
+        "McCutcheonMPs ,\n" +
+        "McCutcheonRank ,\n" +
+        "McCutcheonState ,\n" +
+        "OldAddress1 ,\n" +
+        "OldAddress2 ,\n" +
+        "OldAddressPostcode ,\n" +
+        "OldAddressState ,\n" +
+        "OldTotalGold ,\n" +
+        "OldTotalGreen ,\n" +
+        "OldTotalRed ,\n" +
+        "OldYearStartRankID ,\n" +
+        "PeriodGold ,\n" +
+        "PeriodGreen ,\n" +
+        "PeriodRed ,\n" +
+        "PhoneNumber ,\n" +
+        "PlayerID ,\n" +
+        "Pre82Red ,\n" +
+        "PreferredFirstName ,\n" +
+        "PreviousRankID ,\n" +
+        "PriorGold ,\n" +
+        "PriorGreen ,\n" +
+        "PriorMPs ,\n" +
+        "PriorRed ,\n" +
+        "Q1Gold ,\n" +
+        "Q1Green ,\n" +
+        "Q1Red ,\n" +
+        "Q2Gold ,\n" +
+        "Q2Green ,\n" +
+        "Q2Red ,\n" +
+        "Q3Gold ,\n" +
+        "Q3Green ,\n" +
+        "Q3Red ,\n" +
+        "Q4Gold ,\n" +
+        "Q4Green ,\n" +
+        "Q4Red ,\n" +
+        "QuarterGold ,\n" +
+        "QuarterGreen ,\n" +
+        "QuarterRed ,\n" +
+        "RankID ,\n" +
+        "RealName ,\n" +
+        "Surname ,\n" +
+        "T_PriorMPs ,\n" +
+        "ThisYearMPs ,\n" +
+        "Title ,\n" +
+        "TotalGold ,\n" +
+        "TotalGreen ,\n" +
+        "TotalMPs ,\n" +
+        "TotalRed ,\n" +
+        "Y1Gold ,\n" +
+        "Y1Green ,\n" +
+        "Y1Red ,\n" +
+        "Y2Gold ,\n" +
+        "Y2Green ,\n" +
+        "Y2Red ,\n" +
+        "YearAgoGold ,\n" +
+        "YearAgoGreen ,\n" +
+        "YearAgoRed ,\n" +
+        "YearDeletedOrInactive ,\n" +
+        "YearStartRankID from Players where PlayerID > " + req.params.min_player_id + " and PlayerID < " + req.params.max_player_id;
+    console.log(str);
+    runSql(res, str)
+})
+
 app.get('/mpci-promotions/:min_id', function (req, res) {
     console.log("Requested /mpci-promotions");
     const str = "SELECT * from Promotions where PromotionID > " + req.params.min_id;
@@ -239,6 +390,15 @@ app.get('/mpci-promotions/:min_id', function (req, res) {
 app.get('/mpci-system-settings', function (req, res) {
     console.log("Requested /mpci-system-settings");
     const str = "SELECT * from SystemSettings";
+    console.log(str);
+    runSql(res, str)
+})
+
+app.get('/me', function (req, res) {
+    const str = "SELECT ORDINAL_POSITION, COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH\n" +
+        "       , IS_NULLABLE\n" +
+        "FROM INFORMATION_SCHEMA.COLUMNS\n" +
+        "WHERE TABLE_NAME = 'Clubs'";
     console.log(str);
     runSql(res, str)
 })
