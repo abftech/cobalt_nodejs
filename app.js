@@ -208,9 +208,9 @@ app.get('/mpci-charge-types', function (req, res) {
     runSql(res, str)
 })
 
-app.get('/mpci-batches/:batch_id', function (req, res) {
+app.get('/mpci-batches/:min_batch_id/:max_batch_id', function (req, res) {
     console.log("Requested /mpci-batches");
-    const str = "SELECT * from MPBatches where MpBatchID > " + req.params.batch_id;
+    const str = "SELECT * from MPBatches where MpBatchID > " + req.params.min_batch_id + "and MPBatchID < " + req.params.max_batch_id;
     console.log(str);
     runSql(res, str)
 })
@@ -225,6 +225,13 @@ app.get('/mpci-trans/:min_tran_id/:max_tran_id', function (req, res) {
 app.get('/mpci-ranks', function (req, res) {
     console.log("Requested /mpci-ranks");
     const str = "SELECT * from Ranks";
+    console.log(str);
+    runSql(res, str)
+})
+
+app.get('/mpci-periods', function (req, res) {
+    console.log("Requested /mpci-periods");
+    const str = "SELECT * from Periods";
     console.log(str);
     runSql(res, str)
 })
@@ -380,9 +387,16 @@ app.get('/mpci-players/:min_player_id/:max_player_id', function (req, res) {
     runSql(res, str)
 })
 
-app.get('/mpci-promotions/:min_id', function (req, res) {
+app.get('/mpci-promotions', function (req, res) {
     console.log("Requested /mpci-promotions");
-    const str = "SELECT * from Promotions where PromotionID > " + req.params.min_id;
+    const str = "SELECT * from Promotions";
+    console.log(str);
+    runSql(res, str)
+})
+
+app.get('/mpci-club-membership', function (req, res) {
+    console.log("Requested /mpci-club-membership");
+    const str = "SELECT * from ClubMembership";
     console.log(str);
     runSql(res, str)
 })
@@ -395,10 +409,11 @@ app.get('/mpci-system-settings', function (req, res) {
 })
 
 app.get('/me', function (req, res) {
-    const str = "SELECT ORDINAL_POSITION, COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH\n" +
+    const str2 = "SELECT ORDINAL_POSITION, COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH\n" +
         "       , IS_NULLABLE\n" +
         "FROM INFORMATION_SCHEMA.COLUMNS\n" +
-        "WHERE TABLE_NAME = 'Clubs'";
+        "WHERE TABLE_NAME = 'ClubMembership'";
+    const str = "select * from Players where PlayerID = 85001";
     console.log(str);
     runSql(res, str)
 })
