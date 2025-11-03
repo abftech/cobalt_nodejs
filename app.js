@@ -17,6 +17,7 @@ function runSql(res, sqlQuery) {
   };
 
   sql.connect(config, function (err) {
+      console.time('RunSql');
       if (err) console.log(err);
       var request = new sql.Request();
       request.query(sqlQuery, function (err, recordset) {
@@ -25,7 +26,9 @@ function runSql(res, sqlQuery) {
             res.send("");
           } else {
             res.send(recordset.recordset);
-          }
+          };
+          console.timeEnd('RunSql');
+          console.log("RunSql Complete - finished communicating with the MPC SQL Server");
       });
   });
 }
@@ -210,7 +213,7 @@ app.get('/mpci-charge-types', function (req, res) {
 
 app.get('/mpci-batches/:min_batch_id/:max_batch_id', function (req, res) {
     console.log("Requested /mpci-batches");
-    const str = "SELECT * from MPBatches where MpBatchID > " + req.params.min_batch_id + "and MPBatchID < " + req.params.max_batch_id;
+    const str = "SELECT * from MPBatches where MpBatchID > " + req.params.min_batch_id + " and MPBatchID < " + req.params.max_batch_id;
     console.log(str);
     runSql(res, str)
 })
@@ -413,7 +416,7 @@ app.get('/me', function (req, res) {
         "       , IS_NULLABLE\n" +
         "FROM INFORMATION_SCHEMA.COLUMNS\n" +
         "WHERE TABLE_NAME = 'ClubMembership'";
-    const str = "select * from Players where PlayerID = 85001";
+    const str = "select * from Players where PlayerID = 30000";
     console.log(str);
     runSql(res, str)
 })
