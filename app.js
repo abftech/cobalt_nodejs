@@ -213,14 +213,14 @@ app.get('/mpci-charge-types', function (req, res) {
 
 app.get('/mpci-batches/:min_batch_id/:max_batch_id', function (req, res) {
     console.log("Requested /mpci-batches");
-    const str = "SELECT * from MPBatches where MpBatchID > " + req.params.min_batch_id + " and MPBatchID <= " + req.params.max_batch_id;
+    const str = "SELECT * from MPBatches where MpBatchID >= " + req.params.min_batch_id + " and MPBatchID <= " + req.params.max_batch_id;
     console.log(str);
     runSql(res, str)
 })
 
 app.get('/mpci-trans/:min_tran_id/:max_tran_id', function (req, res) {
     console.log("Requested /mpci-trans");
-    const str = "SELECT * from MPTrans where TranID > " + req.params.min_tran_id + " and TranID <= " + req.params.max_tran_id;
+    const str = "SELECT * from MPTrans where TranID >= " + req.params.min_tran_id + " and TranID <= " + req.params.max_tran_id;
     console.log(str);
     runSql(res, str)
 })
@@ -385,7 +385,7 @@ app.get('/mpci-players/:min_player_id/:max_player_id', function (req, res) {
         "YearAgoGreen ,\n" +
         "YearAgoRed ,\n" +
         "YearDeletedOrInactive ,\n" +
-        "YearStartRankID from Players where PlayerID > " + req.params.min_player_id + " and PlayerID <= " + req.params.max_player_id;
+        "YearStartRankID from Players where PlayerID >= " + req.params.min_player_id + " and PlayerID <= " + req.params.max_player_id;
         // "YearStartRankID from Players where PlayerID = 75000";
     console.log(str);
     runSql(res, str)
