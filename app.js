@@ -386,6 +386,7 @@ app.get('/mpci-players/:min_player_id/:max_player_id', function (req, res) {
         "YearAgoRed ,\n" +
         "YearDeletedOrInactive ,\n" +
         "YearStartRankID from Players where PlayerID > " + req.params.min_player_id + " and PlayerID < " + req.params.max_player_id;
+        // "YearStartRankID from Players where PlayerID = 75000";
     console.log(str);
     runSql(res, str)
 })
